@@ -1,0 +1,27 @@
+
+
+
+    http://host:port/path?query#fragment
+
+http - protokół
+host - adres domeny bądź serwera
+port - port na którym nasłuchuje serwer
+        dla http: 80
+        dla https: 443
+path - ścieżka na danym serwerze
+        np: /
+            /assets/documents/readme.txt
+            /main.js
+
+?query
+
+    query -> ?klucz1=wartość1&klucz2=wartość2
+
+    https://www.google.com/search?q=protok%C3%B3%C5%82+http&rlz=1C5CHFA_enPL911PL911&oq=protok%C3%B3%C5%82+http&aqs=chrome.0.0i512j0i22i30l9.8033j0j7&sourceid=chrome&ie=UTF-8
+
+?q       =protok%C3%B3%C5%82+http
+rlz      =1C5CHFA_enPL911PL911
+oq       =protok%C3%B3%C5%82+http
+aqs      =chrome.0.0i512j0i22i30l9.8033j0j7
+sourceid =chrome
+ie       =UTF-8
