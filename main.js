@@ -260,3 +260,34 @@ response
   .then(function (data) {
     console.log(data);
   });
+
+/* Zadanie 2
+Napisz funkcję, która pobierze informacje o użytkowniku poprzez GitHub API oraz wyświetli je na ekranie.
+*/
+
+/*
+var getUserInfo = function(user) {
+  var users = "https://api.github.com/users/"+ user
+  return fetch(users)
+}.then(function (users) {
+  return users.json();
+})
+.then(function (data) {
+  console.log(data);
+});
+*/
+
+function getUserInfo(user) {
+  var url = "https://api.github.com/users/" + user;
+  return fetch(url)
+    .then(function (userInfo) {
+      return userInfo.json();
+    })
+    .then(function (data) {
+      return data;
+    });
+}
+
+getUserInfo('juszczak').then(function(user) {
+  console.log(user);
+})
