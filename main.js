@@ -386,7 +386,6 @@ for (var i = 0; i < inputs.length; i++) {
   });
 
   var val = localStorage.getItem(inputs[i].name);
-  console.log('value exists?', val);
   if(val) {
     inputs[i].value = val;
   }
