@@ -187,6 +187,7 @@ function getRandomPromise() {
   });
 }
 
+/*
 var randomPromise = getRandomPromise();
 
 randomPromise.then(function(timeout) {
@@ -194,3 +195,52 @@ randomPromise.then(function(timeout) {
 }).catch(function(timeout) {
   console.log('promise przeszedł do stanu rejected po', timeout, 's');
 })
+*/
+
+var req = new XMLHttpRequest();
+var obj;
+
+req.open('GET', 'https://reqres.in/api/colors');
+// req.open('GET', 'https://api.github.com/users/juszczakaaaaaa');
+
+// a)
+req.addEventListener('load', function(event) {
+  console.log(event.target);
+  if (event.target.status === 200) {
+    console.log('ok');
+
+  } else {
+    console.log('możliwy błąd', event.target.status);
+  }
+});
+
+// b)
+// req.onload = function(event) {
+//   console.log(event.target.responseText);
+// }
+
+req.addEventListener('error', function(event) {
+  console.log('cannot get data', event);
+});
+
+// req.send();
+
+
+var req2 = new XMLHttpRequest();
+
+req2.addEventListener('load', function(event) {
+  console.log(event.target);
+});
+
+req2.open('POST', 'https://reqres.in/api/users');
+
+var user = {
+  "name": "morpheus",
+  "job": "leader"
+}
+
+var body = JSON.stringify(user);
+
+req2.setRequestHeader('Accept', 'application/json');
+
+req2.send(body);
