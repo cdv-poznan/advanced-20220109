@@ -288,6 +288,23 @@ function getUserInfo(user) {
     });
 }
 
-getUserInfo('juszczak').then(function(user) {
+getUserInfo("juszczak").then(function (user) {
   console.log(user);
-})
+});
+
+var user = {
+  name: "morpheus",
+  job: "leader",
+};
+
+var reqConfig = {
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+  },
+  body: JSON.stringify(user),
+};
+
+fetch("https://reqres.in/api/users", reqConfig).then(function (response) {
+  console.log(response);
+});
