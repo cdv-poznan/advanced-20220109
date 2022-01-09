@@ -253,6 +253,7 @@ response
   .catch(function (error) {});
   */
 
+/*
 response
   .then(function (response) {
     return response.json();
@@ -260,6 +261,7 @@ response
   .then(function (data) {
     console.log(data);
   });
+  */
 
 /* Zadanie 2
 Napisz funkcję, która pobierze informacje o użytkowniku poprzez GitHub API oraz wyświetli je na ekranie.
@@ -288,9 +290,11 @@ function getUserInfo(user) {
     });
 }
 
+/*
 getUserInfo("juszczak").then(function (user) {
   console.log(user);
 });
+*/
 
 var user = {
   name: "morpheus",
@@ -305,6 +309,39 @@ var reqConfig = {
   body: JSON.stringify(user),
 };
 
+/*
 fetch("https://reqres.in/api/users", reqConfig).then(function (response) {
   console.log(response);
 });
+*/
+
+/* Cookies */
+
+// document.cookie = 'username=Adrian';
+// document.cookie = 'lastname=Juszczak;max-age=100'; // max-age w sekundach
+// document.cookie = 'a=b';
+
+/*
+ * Zadanie 3
+Napisz skrypt, który poprosi użytkownika o podanie swojego imienia a następnie
+przywita go wykorzystując tę informację przy każdej kolejnej wizycie na stronie.
+*/
+
+var cookies = document.cookie.split('; ').map(function(cookie) {
+  return cookie.split('=');
+});
+
+var returningVisitor = cookies.find(function(cookie) {
+  return cookie[0] === 'username';
+});
+
+if (returningVisitor) {
+  document.getElementById('greeting').innerText = 'Hello ' + returningVisitor[1] + '!';
+} else {
+  var input = document.createElement('input');
+  input.placeholder = 'What is your name?';
+  input.addEventListener('change', function() {
+    document.cookie = 'username=' + input.value;
+  });
+  document.getElementById('greeting').append(input);
+}
