@@ -134,7 +134,7 @@ promise3.then(function(value) {
 */
 
 
-
+/*
 var promise = new Promise(function(resolve, reject) {
   setTimeout(function() {
     if (Math.random() > 0.5) {
@@ -144,6 +144,7 @@ var promise = new Promise(function(resolve, reject) {
     }
   }, 5000)
 });
+*/
 
 /*
   Promise:
@@ -153,11 +154,43 @@ var promise = new Promise(function(resolve, reject) {
 
  */
 
+/*
 // przejście ze stanu pendig do stanu fulfilled (metoda then)
 promise.then(function(value) {
   console.log('promise has been resolved', value);
-}).catch(function(error) {
+}).catch(function(error) { // przejście ze stanu pending do stanu rejected
   console.log('error during async operation');
-}).finally(function() {
+}).finally(function() { // zawsze na koniec
   console.log('end');
+});
+*/
+
+var promise4 = Promise.resolve();
+// var promise5 = Promise.reject();
+
+/**
+ * Zadanie 1
+Napisz funkcję zwracającą Promise, który po pewnym czasie losowo zmieni status na fulfilled bądź rejected.
+*/
+
+function getRandomPromise() {
+  return new Promise(function(resolve, reject) {
+    var timeout = Math.floor(Math.random() * 5) * 1000;
+
+    setTimeout(function() {
+      if (Math.random() > 0.5) {
+        resolve(timeout)
+      } else {
+        reject(timeout);
+      }
+    }, timeout)
+  });
+}
+
+var randomPromise = getRandomPromise();
+
+randomPromise.then(function(timeout) {
+  console.log('promise przeszedł do stanu fulfilled po', timeout, 's');
+}).catch(function(timeout) {
+  console.log('promise przeszedł do stanu rejected po', timeout, 's');
 })
