@@ -3,6 +3,7 @@
   <head>
     <title>Home</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   </head>
   <body>
     <!--
@@ -25,7 +26,17 @@
     </nav>
     <h1>Advanced JavaScript</h1>
 
-    <section id="section-a" class="section">A</section>
+    <section id="section-a" class="section"><h2>A</h2>
+      <form>
+        <input type="text" placeholder="Your name" />
+        <input type="password" placeholder="Your password" />
+        <button type="submit">Submit</button>
+      </form>
+
+      <div class="box red"></div>
+      <div class="box blue"></div>
+
+    </section>
     <section id="section-b" class="section"><h2>B</h2>
 
       <a href="/pages/a.html">Page A</a>
@@ -52,7 +63,6 @@
       <h3 id="location"></h3>
     </aside>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="/main.js"></script>
   </body>
 </html>

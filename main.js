@@ -55,6 +55,109 @@ $('ul').show(); // pokazuje elementy
 $('ul').toggle(); // ukrywa elementy widoczne a pokazuje ukryte
 */
 
-$('li').fadeOut(); // ukrywa elementy z animacją
-$('li').fadeIn(); // pokazuje elementy z animacją
-$('li').fadeToggle(); // jak `.toggle()` ale z animacją
+// $('li').fadeOut(); // ukrywa elementy z animacją
+// $('li').fadeIn(); // pokazuje elementy z animacją
+// $('li').fadeToggle(); // jak `.toggle()` ale z animacją
+
+$('button').attr('disabled', false)
+
+$('input').css('background', '#0f0')
+
+var heading = $('<h3 id="idh3" class="heading">Hello jQuery</h3>');
+
+$('section:nth-of-type(3)').html(heading);
+$('section').first().append(heading);
+
+$('section').last().remove();
+
+$('li').click(function(event) {
+  console.log(event.target);
+});
+
+/*
+$('input').hover(function(event) {
+  console.log(event);
+});
+*/
+
+$('input').first().val(); // zwraca wartość elementu
+$('input').first().val('adrian') // ustawia wartość elementu
+
+$('input').first().change(function(event) {
+  console.log(event);
+});
+
+
+$('.red').animate({opacity: 0.2}, 1000);
+$('h1').animate({fontSize: '50px'}, 2000);
+
+function getErrorPromise() {
+  return fetch('http://google.com');
+}
+
+function getPromise() {
+  return fetch('https://api.github.com/users/juszczak');
+}
+
+/*
+var promise1 = getPromise();
+console.log('Promise 1', promise1);
+promise1.then(function(promisedValue) { // przejście ze stanu pending -> fulfilled
+  console.log('Promise 1', promise1);
+});
+promise1.finally(function() {
+  console.log('Promise 1 finally');
+});
+
+var promise2 = getErrorPromise();
+console.log('Promise 2', promise2);
+
+promise2.catch(function(errorValue) {
+  console.log('Promise 2', promise2);
+});
+
+promise2.finally(function() {
+  console.log('Promise 2 finally');
+});
+*/
+
+/*
+var promise3 = getPromise();
+
+promise3.then(function(value) {
+  console.log('promise has returned value', value);
+}).catch(function(error) {
+  console.log('promise error', error);
+}).finally(function() {
+  console.log('promise has finished');
+});
+*/
+
+
+
+var promise = new Promise(function(resolve, reject) {
+  setTimeout(function() {
+    if (Math.random() > 0.5) {
+      resolve();
+    } else {
+      reject();
+    }
+  }, 5000)
+});
+
+/*
+  Promise:
+    * pending - początkowy stan
+    * a) fulfilled - sukces
+    * b) rejected - błąd
+
+ */
+
+// przejście ze stanu pendig do stanu fulfilled (metoda then)
+promise.then(function(value) {
+  console.log('promise has been resolved', value);
+}).catch(function(error) {
+  console.log('error during async operation');
+}).finally(function() {
+  console.log('end');
+})
