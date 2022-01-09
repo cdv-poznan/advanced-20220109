@@ -335,6 +335,7 @@ var returningVisitor = cookies.find(function(cookie) {
   return cookie[0] === 'username';
 });
 
+/*
 if (returningVisitor) {
   document.getElementById('greeting').innerText = 'Hello ' + returningVisitor[1] + '!';
 } else {
@@ -344,4 +345,12 @@ if (returningVisitor) {
     document.cookie = 'username=' + input.value;
   });
   document.getElementById('greeting').append(input);
+}
+*/
+
+if (returningVisitor) {
+  alert('Hello ' + returningVisitor[1]);
+} else {
+  var username = prompt('What is your name?');
+  document.cookie = 'username=' + username;
 }
