@@ -1,0 +1,9 @@
+.section {
+  height: 500px;
+}
+
+#location {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
