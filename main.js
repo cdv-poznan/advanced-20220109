@@ -347,10 +347,47 @@ if (returningVisitor) {
   document.getElementById('greeting').append(input);
 }
 */
-
+/*
 if (returningVisitor) {
   alert('Hello ' + returningVisitor[1]);
 } else {
   var username = prompt('What is your name?');
   document.cookie = 'username=' + username;
+}
+*/
+
+// dane przechowywane w nieskończoność
+localStorage.setItem('local_user_name', 'Adrian');
+
+localStorage.getItem('local_user_name');
+
+localStorage.removeItem('local_user_name');
+
+
+// dane per zakładka, czyszczone po zamknięciu przeglądarki
+sessionStorage.setItem('session_user_name', 'Adrian');
+
+sessionStorage.getItem('session_user_name');
+
+sessionStorage.removeItem('session_user_name');
+
+/*
+ * Zadanie 4
+Napisz skrypt, który podczas zmiany wartości pól formularza zapisze je w przeglądarce
+i odtworzy przy kolejnej wizycie użytkownika.
+*/
+
+var form = document.querySelector('#zadanie4');
+var inputs = form.getElementsByTagName('input');
+
+for (var i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener('change', function(event) {
+    localStorage.setItem(event.target.name, event.target.value);
+  });
+
+  var val = localStorage.getItem(inputs[i].name);
+  console.log('value exists?', val);
+  if(val) {
+    inputs[i].value = val;
+  }
 }
