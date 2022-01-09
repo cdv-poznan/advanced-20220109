@@ -1,11 +1,9 @@
-
-window.addEventListener('beforeunload', function(event) {
+window.addEventListener("beforeunload", function (event) {
   console.log(event);
 });
 
-
-window.addEventListener('hashchange', function(event) {
-  console.log('navigation:', event.oldURL, '->', event.newURL);
+window.addEventListener("hashchange", function (event) {
+  console.log("navigation:", event.oldURL, "->", event.newURL);
 });
 
 /**
@@ -14,19 +12,18 @@ Napisz skrypt wyświetlający aktualny adres URL strony na której został zała
 Wartość powinna być również aktualizowana w przypadku zmiany hasha bez przeładowania strony.
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-  var locationLabel = document.getElementById('location');
+document.addEventListener("DOMContentLoaded", function () {
+  var locationLabel = document.getElementById("location");
   locationLabel.innerText = window.location.toString();
 
-  window.addEventListener('hashchange', function(event) {
+  window.addEventListener("hashchange", function (event) {
     locationLabel.innerText = event.newURL;
   });
 });
 
+var listA = document.querySelectorAll("ul");
 
-var listA = document.querySelectorAll('ul');
-
-var listB = $('ul');
+var listB = $("ul");
 
 /*
 var array = ['a', 'b'];
@@ -59,18 +56,18 @@ $('ul').toggle(); // ukrywa elementy widoczne a pokazuje ukryte
 // $('li').fadeIn(); // pokazuje elementy z animacją
 // $('li').fadeToggle(); // jak `.toggle()` ale z animacją
 
-$('button').attr('disabled', false)
+$("button").attr("disabled", false);
 
-$('input').css('background', '#0f0')
+$("input").css("background", "#0f0");
 
 var heading = $('<h3 id="idh3" class="heading">Hello jQuery</h3>');
 
-$('section:nth-of-type(3)').html(heading);
-$('section').first().append(heading);
+$("section:nth-of-type(3)").html(heading);
+$("section").first().append(heading);
 
-$('section').last().remove();
+$("section").last().remove();
 
-$('li').click(function(event) {
+$("li").click(function (event) {
   console.log(event.target);
 });
 
@@ -80,23 +77,24 @@ $('input').hover(function(event) {
 });
 */
 
-$('input').first().val(); // zwraca wartość elementu
-$('input').first().val('adrian') // ustawia wartość elementu
+$("input").first().val(); // zwraca wartość elementu
+$("input").first().val("adrian"); // ustawia wartość elementu
 
-$('input').first().change(function(event) {
-  console.log(event);
-});
+$("input")
+  .first()
+  .change(function (event) {
+    console.log(event);
+  });
 
-
-$('.red').animate({opacity: 0.2}, 1000);
-$('h1').animate({fontSize: '50px'}, 2000);
+$(".red").animate({ opacity: 0.2 }, 1000);
+$("h1").animate({ fontSize: "50px" }, 2000);
 
 function getErrorPromise() {
-  return fetch('http://google.com');
+  return fetch("http://google.com");
 }
 
 function getPromise() {
-  return fetch('https://api.github.com/users/juszczak');
+  return fetch("https://api.github.com/users/juszczak");
 }
 
 /*
@@ -132,7 +130,6 @@ promise3.then(function(value) {
   console.log('promise has finished');
 });
 */
-
 
 /*
 var promise = new Promise(function(resolve, reject) {
@@ -174,16 +171,16 @@ Napisz funkcję zwracającą Promise, który po pewnym czasie losowo zmieni stat
 */
 
 function getRandomPromise() {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     var timeout = Math.floor(Math.random() * 5) * 1000;
 
-    setTimeout(function() {
+    setTimeout(function () {
       if (Math.random() > 0.5) {
-        resolve(timeout)
+        resolve(timeout);
       } else {
         reject(timeout);
       }
-    }, timeout)
+    }, timeout);
   });
 }
 
@@ -200,17 +197,16 @@ randomPromise.then(function(timeout) {
 var req = new XMLHttpRequest();
 var obj;
 
-req.open('GET', 'https://reqres.in/api/colors');
+req.open("GET", "https://reqres.in/api/colors");
 // req.open('GET', 'https://api.github.com/users/juszczakaaaaaa');
 
 // a)
-req.addEventListener('load', function(event) {
+req.addEventListener("load", function (event) {
   console.log(event.target);
   if (event.target.status === 200) {
-    console.log('ok');
-
+    console.log("ok");
   } else {
-    console.log('możliwy błąd', event.target.status);
+    console.log("możliwy błąd", event.target.status);
   }
 });
 
@@ -219,28 +215,48 @@ req.addEventListener('load', function(event) {
 //   console.log(event.target.responseText);
 // }
 
-req.addEventListener('error', function(event) {
-  console.log('cannot get data', event);
+req.addEventListener("error", function (event) {
+  console.log("cannot get data", event);
 });
 
 // req.send();
 
-
 var req2 = new XMLHttpRequest();
 
-req2.addEventListener('load', function(event) {
+req2.addEventListener("load", function (event) {
   console.log(event.target);
 });
 
-req2.open('POST', 'https://reqres.in/api/users');
+req2.open("POST", "https://reqres.in/api/users");
 
 var user = {
-  "name": "morpheus",
-  "job": "leader"
-}
+  name: "morpheus",
+  job: "leader",
+};
 
 var body = JSON.stringify(user);
 
-req2.setRequestHeader('Accept', 'application/json');
+req2.setRequestHeader("Accept", "application/json");
+// req2.send(body);
 
-req2.send(body);
+/* Fetch API */
+var response = fetch("https://reqres.in/api/colors");
+
+/*
+response
+  .then(function (response) {
+    var json = response.json();
+    json.then(function (data) {
+      console.log(data);
+    });
+  })
+  .catch(function (error) {});
+  */
+
+response
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+  });
